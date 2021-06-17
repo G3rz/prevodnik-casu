@@ -1,0 +1,3 @@
+# prevodnik-casu
+
+Aplikace slouží pro pohodlnější plánování soutěží v GuruShots...
