@@ -20,7 +20,6 @@ body {
 
 #cas {
     text-align: center;
-    ;
 }
 
 #app input {
@@ -57,19 +56,6 @@ body {
     width: 100%
 }
 
-#tabulka {
-    margin-top: 32px;
-    padding-top: 32px;
-    border-top: 2px solid var(--primary);
-    margin-bottom: 32px;
-}
-
-table {
-    margin: auto;
-}
-
-
-/* Zrušení šipek u inputů */
 /* Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button,
@@ -79,7 +65,25 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+#tabulka {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 2px solid var(--primary);
+    margin-bottom: 32px;
+}
+
+table {
+    margin: auto;
+    background: white;
+    font-size: initial;
+    color: initial;
+    border-spacing: 0;
+}
+
+td {
+    padding: 16px;
 }
