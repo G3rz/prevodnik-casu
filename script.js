@@ -3,29 +3,30 @@ ukazatelCasu.innerHTML = new Date().toLocaleString();
 
 function cas() {
     let today = new Date(),
-        pridatDny = Number(document.getElementById('dny').value) * 1440,
-        pridatHodiny = Number(document.getElementById('hodiny').value) * 60,
-        pridatMinuty = Number(document.getElementById('minuty').value),
-        hodnotaPridanehoCasu = pridatDny + pridatHodiny + pridatMinuty;
+        pridatDnyInput = Number(document.getElementById('dny').value) * 1440,
+        pridatHodinyInput = Number(document.getElementById('hodiny').value) * 60,
+        pridatMinutyInput = Number(document.getElementById('minuty').value),
+        hodnotaPridanehoCasu = pridatDnyInput + pridatHodinyInput + pridatMinutyInput;
+
     today.setMinutes(new Date().getMinutes() + hodnotaPridanehoCasu);
-
-    let s = today.getSeconds(),
-        m = today.getMinutes(),
-        h = today.getHours(),
-        // padStart nastaví délku retězce na počet znaků a vyplní symbolem
-        dd = String(today.getDate()).padStart(2, '0'),
-        mm = String(today.getMonth() + 1).padStart(2, ' '),
-        yyyy = today.getFullYear();
-
-
-    ukazatelCasu.innerHTML = ("0" + dd).substr(-2) + "." + mm + ". " + yyyy + " ";
-    ukazatelCasu.innerHTML += ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
-
+    ukazatelCasu.innerHTML = today.toLocaleString();
+    return today;
 }
 setInterval(cas, 1000);
 
 function pridatDoTabulky() {
-    let tabulka = document.querySelector('#tabulka tbody');
+    let tabulka = document.querySelector('#tabulka tbody'),
+        parsovanyCas = Date.parse(cas()),
+        time = new Date(parsovanyCas),
+        formatovanyCas = time.toLocaleString([], {
+            dateStyle: "medium",
+            timeStyle: "short"
+        }),
+        casovaRezerva = new Date(time.setMinutes(time.getMinutes() - 10)).toLocaleString([], {
+            dateStyle: "medium",
+            timeStyle: "short"
+        });
 
-    tabulka.innerHTML += "<tr><td>" + ukazatelCasu.innerHTML + "</td></tr>";
+    tabulka.innerHTML += "<tr><td>" + casovaRezerva + "</td><td>" + formatovanyCas + "</td></tr>";
+
 }
